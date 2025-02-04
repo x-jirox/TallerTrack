@@ -1,0 +1,73 @@
+ /* Estilos generales del formulario */
+    #searchForm {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        max-width: 1000px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+
+    .content{
+     display: flex;
+     flex-direction : column;
+ align-items: center;
+ gap: 15px;
+    }
+
+    .dates{
+    display:flex;
+    gap: 10px;
+    }
+
+    /* Estilo del campo de búsqueda */
+    #searchInput {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+
+        width: 300px; /* Ajusta el ancho según tus necesidades */
+    }
+
+    /* Estilo de los campos de entrada */
+    input[type="date"] {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    /* Estilo del botón de envío */
+    button[type="submit"] {
+        background-color: #11101d;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+
+
+    /* Estilo de las etiquetas */
+    label {
+        font-size: 16px;
+        margin-right: 10px;
+        font-weight: bold;
+    }
+
+    /* Estilo del contenedor de los grupos de campos */
+    .form-group {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+    }
+
+    .form-group input {
+        margin-left: 5px;
+    }

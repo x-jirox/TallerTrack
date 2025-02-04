@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Cliente</title>
+    <link rel="stylesheet" th:href="@{/css/newclient.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<section class="home-section">
+    <div class="home-content">
+        <i class='bx bx-menu'></i>
+    </div>
+
+    <div class="form-container">
+        <h2>Formulario de Nuevo Ficha de Trabajo</h2>
+        <form th:action="@{/ficha/formFicha}" method="post">
+            <!-- Campo oculto para enviar el ID de la orden -->
+            <input type="hidden" name="idOrden" th:value="${idOrden}" />
+
+            <label for="fecha" class="form-label">Fecha</label>
+            <input type="date" class="form-control" id="fecha" name="fechaCreacion" required>
+
+            <label for="costo">Costo:</label>
+            <input type="number" id="costo" name="costo" placeholder="Ingrese el Costo" step="0.01" required />
+
+
+            <label for="descripcion">Descripción:</label>
+            <textarea class="text-area" name="descripcion" id="descripcion" cols="30" rows="10" required></textarea>
+
+            <button type="submit" class="submit-btn">Guardar</button>
+        </form>
+    </div>
+</section>
+
+</body>
+<script th:src="@{/js/scripts/menu.js}"></script>
+</html>

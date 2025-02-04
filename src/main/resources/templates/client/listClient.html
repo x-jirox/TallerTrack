@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Clientes</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/listas.css}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<section class="home-section">
+    <div class="home-content">
+        <i class='bx bx-menu'></i>
+    </div>
+
+    <div class="container">
+        <div class="content-inline">
+            <div class="search-inline">
+                <form action="/client/searchClient" method="get" id="searchForm">
+                    <input name="term" class="search-inline--input" placeholder="Buscar por cedula o nombre"
+                           id="searchInput">
+                </form>
+
+            </div>
+        </div>
+
+        <a href="/client/listClient" class="nuevoclient">Todos los Clientes</a>
+        <a href="/client/formClient" class="nuevoclient">Nuevo Cliente</a>
+
+        <!-- Tabla de productos -->
+        <table class="elegant-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>CI / RUC</th>
+                <th>NOMBRE</th>
+                <th>TELEFONO</th>
+                <th>DIRECCION</th>
+                <th>EMAIL</th>
+                <th>ACCIONES</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.id}"></td>
+                <td th:text="${cliente.ci_ruc}"></td>
+                <td th:text="${cliente.nombre}"></td>
+                <td th:text="${cliente.telefono}"></td>
+                <td th:text="${cliente.direccion}"></td>
+                <td th:text="${cliente.email}"></td>
+                <td>
+                    <div class="action-buttons">
+                        <!-- Botón de Actualizar -->
+                        <a th:href="@{/client/formClient/} + ${cliente.id}"
+                           class="btn btn-primary btn-sm update-btn"
+                           data-id="${cliente.id}">
+                            Actualizar
+                        </a>
+                        <!-- Botón de Eliminar -->
+                        <a th:href="@{/client/deleteClient/} + ${cliente.id}"
+                           class="btn btn-danger btn-sm delete-btn"
+                           data-id="${cliente.id}">
+                            Eliminar
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script th:src="@{/js/scripts/client/search.js}"></script>
+<script th:src="@{/js/scripts/alerts.js}"></script>
+<script th:src="@{/js/scripts/menu.js}"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 20px;
+}
+
+.ticket-header {
+    background-color: #0f0f32;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.ticket-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.info-section,
+.user-info {
+    width: 45%;
+}
+
+h3 {
+    color: #a62929;
+    font-weight: bold;
+}
+
+.ticket-details {
+    margin-bottom: 20px;
+}
+
+.ticket-message {
+    border-top: 1px solid #11101d;
+    padding-top: 20px;
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.message-header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.message-header div {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-content {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 5px;
+}
+@media print {
+    /* Ocultar todo lo que no sea la sección de la orden */
+    body * {
+        visibility: hidden;
+    }
+    /* Mostrar solo la sección de la orden */
+    .printable-area, .printable-area * {
+        visibility: visible;
+    }
+    /* Asegurarse que la sección impresa ocupe toda la página */
+    .printable-area {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+}
+
+
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.details-table th,
+.details-table td {
+    border: 1px solid #0f0f32;
+    padding: 8px;
+    text-align: left;
+}
+
+.details-table th {
+    background-color: #0f0f32;
+    color: white;
+}
+
+.total-row td {
+    font-weight: bold;
+}
+
+.total-row .text-right {
+    background-color: #0f0f32; /* Fondo negro */
+    color: white; /* Letras blancas */
+}
+
+.totalfinal {
+    background-color: #fff; /* Fondo blanco */
+    color: black; /* Letras negras */
+
+}
+
+.print-button {
+    display: flex;
+    justify-content: center; /* Centra el botón horizontalmente */
+    margin-top: 20px; /* Espaciado superior */
+}
+
+.print-button button {
+    background-color: #a62929; /* Color de fondo amarillo */
+    color: #ffffff; /* Letras negras */
+    border: none; /* Sin bordes */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+    border-radius: 10px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Animación suave al pasar el cursor */
+}
+
+.ticket-coments {
+    border-top: 1px solid #11101d;
+}
+
+.coments{
+    margin-top: 10px;
+}
+
+/*csspara el ver*/

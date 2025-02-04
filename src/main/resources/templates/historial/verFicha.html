@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/ver.css}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .printable-area {
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .ticket-header {
+        background-color: #2c3e50;
+        color: #ffffff;
+        padding: 5px; /* Reducir el relleno */
+        border-radius: 10px 10px 0 0;
+        text-align: center;
+    }
+
+    .ticket-header h2 {
+        font-size: 18px; /* Reducir el tamaño de la fuente */
+        margin: 5px 0; /* Reducir los márgenes */
+    }
+
+    .info-section, .user-info, .ticket-details {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-left: 5px solid #3498db;
+        border-radius: 5px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .info-section h3, .user-info h3, .ticket-details h3 {
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin: 2px 0;
+        color: #333;
+    }
+
+    p strong {
+        color: #2c3e50;
+    }
+
+    /* Estilo del botón de imprimir */
+    .print-button {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .print-button button {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .print-button button:hover {
+        background-color: #2980b9;
+    }
+
+    /* Estilos para impresión */
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        .printable-area, .printable-area * {
+            visibility: visible;
+        }
+
+        .printable-area {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            page-break-inside: avoid;
+        }
+
+        .print-button {
+            display: none;
+        }
+
+        /* Ajustar el zoom para imprimir en una sola hoja */
+        @page {
+            size: A4;
+            margin: 10mm;
+        }
+
+        .printable-area {
+            transform: scale(0.95);
+            transform-origin: top left;
+        }
+    }
+</style>
+
+
+
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<section class="home-section">
+    <div class="home-content">
+        <i class='bx bx-menu'></i>
+    </div>
+
+    <div class="container py-4">
+        <div class="printable-area">
+            <div class="ticket-header">
+                <h2>Ficha de Trabajo</h2>
+            </div>
+
+            <section class="info-section">
+                <h3>Información Ficha</h3>
+                <p><strong>ID:</strong> <span th:text="${ficha.id}">ID</span></p>
+                <p><strong>Creado el:</strong> <span th:text="${ficha.fechaCreacion}">Fecha</span></p>
+                <p><strong>Costo Total:</strong> <span th:text="${ficha.costo}">Costo Total</span></p>
+                <p><strong>Descripción:</strong> <span th:text="${ficha.descripcion}">Descripción</span></p>
+            </section>
+
+            <section class="info-section">
+                <h3>Información de la Orden</h3>
+                <p><strong>No:</strong> <span th:text="${ficha.ordenTrabajo.codigo}">No</span></p>
+                <p><strong>Estado de la Orden:</strong> <span th:text="${ficha.ordenTrabajo.estado}">Estado</span></p>
+                <p><strong>Personal Encargado:</strong> <span th:text="${ficha.ordenTrabajo.personal.nombre}">Personal Encargado</span></p>
+                <p><strong>Creado el:</strong> <span th:text="${ficha.ordenTrabajo.fechaCreacion}">Fecha</span></p>
+            </section>
+
+            <section class="ticket-details">
+                <h3>Información del Vehículo</h3>
+                <p><strong>Placa:</strong> <span th:text="${ficha.ordenTrabajo.vehiculo.placa}"></span></p>
+                <p><strong>Marca:</strong> <span th:text="${ficha.ordenTrabajo.vehiculo.marca}"></span></p>
+                <p><strong>Modelo:</strong> <span th:text="${ficha.ordenTrabajo.vehiculo.modelo}"></span></p>
+                <p><strong>Año:</strong> <span th:text="${ficha.ordenTrabajo.vehiculo.anyo}"></span></p>
+                <p><strong>Kilometraje:</strong> <span th:text="${ficha.ordenTrabajo.vehiculo.kilometraje}"></span></p>
+            </section>
+
+            <section class="user-info">
+                <h3>Información del Cliente</h3>
+                <p><strong>Cédula/RUC:</strong> <span th:text="${ficha.ordenTrabajo.cliente.ci_ruc}"></span></p>
+                <p><strong>Nombre:</strong> <span th:text="${ficha.ordenTrabajo.cliente.nombre}"></span></p>
+                <p><strong>Dirección:</strong> <span th:text="${ficha.ordenTrabajo.cliente.direccion}"></span></p>
+                <p><strong>Teléfono:</strong> <span th:text="${ficha.ordenTrabajo.cliente.telefono}"></span></p>
+                <p><strong>Email:</strong> <span th:text="${ficha.ordenTrabajo.cliente.email}"></span></p>
+            </section>
+        </div>
+
+        <!-- Botón para imprimir -->
+        <div class="print-button">
+            <button onclick="window.print()">Imprimir</button>
+        </div>
+    </div>
+</section>
+</body>
+<script th:src="@{/js/scripts/menu.js}"></script>
+</html>

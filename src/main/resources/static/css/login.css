@@ -1,0 +1,79 @@
+/* Estilo para que la imagen ocupe toda la pantalla */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Fondo con desenfoque usando ::before */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Asegura que cubra todo el ancho de la ventana */
+    height: 100vh; /* Asegura que cubra toda la altura de la ventana */
+    background: url('/image/log.png') no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(2px); /* Nivel de desenfoque */
+    z-index: -1; /* Asegúrate de que esté detrás del contenido */
+}
+
+/* Contenedor del login centrado */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.6); /* Fondo blanco semi-transparente */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgb(17, 16, 29);
+    width: 300px;
+    text-align: center;
+}
+
+/* Estilo de los campos del formulario */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-group i {
+    margin-right: 10px; /* Espacio entre el ícono y el campo de entrada */
+    font-size: 20px; /* Tamaño del ícono */
+    color: #11101d; /* Color del ícono */
+}
+
+input[type="text"],
+input[type="password"] {
+    flex: 1; /* Hace que el input ocupe el espacio restante */
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #11101d;
+    border-radius: 20px;
+}
+
+
+/* Estilo para centrar el botón */
+.form-group button {
+    display: block; /* Asegura que el botón ocupe una línea completa */
+    margin: 0 auto; /* Centra el botón */
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #11101d;
+    color: white;
+
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 60%;
+}
+
+/* Estilo para los mensajes de error */
+.error {
+    color: red;
+    margin-top: 10px;
+}

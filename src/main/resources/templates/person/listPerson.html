@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Personal</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/listas.css}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<section class="home-section">
+    <div class="home-content">
+        <i class='bx bx-menu'></i>
+    </div>
+
+    <div class="container">
+        <a href="/person/formPerson" class="nuevoclient">Nuevo Empleado</a>
+
+        <!-- Tabla de productos -->
+        <table class="elegant-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>CEDULA</th>
+                <th>NOMBRE</th>
+                <th>APELLIDO</th>
+                <th>ACCIONES</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="personal : ${personal}">
+                <td th:text="${personal.id}"></td>
+                <td th:text="${personal.cedula}"></td>
+                <td th:text="${personal.nombre}"></td>
+                <td th:text="${personal.apellido}"></td>
+                <td>
+                    <div class="action-buttons">
+                        <!-- Botón de Actualizar -->
+                        <a th:href="@{/person/formPerson/} + ${personal.id}"
+                           class="btn btn-primary btn-sm update-btn"
+                           data-id="${personal.id}">
+                            Actualizar
+                        </a>
+                        <!-- Botón de Eliminar -->
+                        <a th:href="@{/person/deletePerson/} + ${personal.id}"
+                           class="btn btn-danger btn-sm delete-btn"
+                           data-id="${personal.id}">
+                            Eliminar
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script th:src="@{/js/scripts/alerts.js}"></script>
+<script th:src="@{/js/scripts/menu.js}"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Clientes</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/listas.css}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<section class="home-section">
+    <div class="home-content">
+        <i class='bx bx-menu'></i>
+    </div>
+
+    <div class="container">
+        <div class="content-inline">
+            <div class="search-inline">
+                <form action="/vehiculo/searchVehiculo" method="get" id="searchForm">
+                    <input name="term" class="search-inline--input" placeholder="Buscar por Marca , Modelo , Año , Placa"
+                           id="searchInput">
+                </form>
+
+            </div>
+        </div>
+
+        <a href="/vehiculo/listVehiculo" class="nuevoclient">Todos los Vehiculos</a>
+        <a href="/vehiculo/formVehiculo" class="nuevoclient">Nuevo Vehiculo</a>
+
+        <!-- Tabla de productos -->
+        <table class="elegant-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>MARCA</th>
+                <th>MODELO</th>
+                <th>PLACA</th>
+                <th>AÑO</th>
+                <th>KILOMETRAJE</th>
+                <th>CLIENTE</th>
+                <th>ACCIONES</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="vehiculo : ${vehiculos}">
+                <td th:text="${vehiculo.id}"></td>
+                <td th:text="${vehiculo.marca}"></td>
+                <td th:text="${vehiculo.modelo}"></td>
+                <td th:text="${vehiculo.placa}"></td>
+                <td th:text="${vehiculo.anyo}"></td>
+                <td th:text="${vehiculo.kilometraje}"></td>
+                <td th:text="${vehiculo.cliente.ci_ruc + '-' + vehiculo.cliente.nombre}"></td>
+                <td>
+                    <div class="action-buttons">
+                        <!-- Botón de Actualizar -->
+                        <a th:href="@{/vehiculo/formVehiculo/} + ${vehiculo.id}"
+                           class="btn btn-primary btn-sm update-btn"
+                           data-id="${vehiculo.id}">
+                            Actualizar
+                        </a>
+                        <!-- Botón de Eliminar -->
+                        <a th:href="@{/vehiculo/deleteVehiculo/} + ${vehiculo.id}"
+                           class="btn btn-danger btn-sm delete-btn"
+                           data-id="${vehiculo.id}">
+                            Eliminar
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script th:src="@{/js/scripts/client/search.js}"></script>
+<script th:src="@{/js/scripts/alerts.js}"></script>
+<script th:src="@{/js/scripts/menu.js}"></script>
+</body>
+</html>

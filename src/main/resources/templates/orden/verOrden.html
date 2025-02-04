@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ordenes</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/ver.css}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<div class="home-section">
+    <div class="home-content">
+        <i class='bx bx-menu'></i>
+    </div>
+
+    <div class="container">
+
+        <!-- Contenedor de la orden, se mostrará solo esta parte en la impresión -->
+        <div class="printable-area">
+            <div class="ticket-header">
+                <h1>QUIZHPE LUZURIAGA ANDRES RICARDO</h1>
+                <h5>CUENCA - ECUADOR</h5>
+                <h6>Carihuairazo s/n y Av. Hurrtado de Mendoza</h6>
+                <h6>Cel: 0982802669 Email: luzuriagaquizhpe@gmail.com</h6>
+            </div>
+
+            <section class="ticket-info">
+                <div class="info-section">
+                    <h3>Información de la Orden</h3>
+                    <p><strong>No:</strong> <span th:text="${orden.codigo}">No.</span></p>
+                    <p><strong>Estado de la Orden:</strong> <span th:text="${orden.estado}">Estado</span></p>
+                    <p><strong>Personal Encargado:</strong> <span
+                            th:text="${orden.personal.nombre} + ' ' + ${orden.personal.apellido}">Personal Encargado</span>
+                    </p>
+                    <p><strong>Creado el :</strong> <span th:text="${orden.fechaCreacion}">Fecha</span></p>
+                    <p><strong>Metodo de Pago:</strong> <span th:text="${orden.metodoPago}">Pago</span></p>
+                </div>
+                <div class="user-info">
+                    <h3>Información del cliente</h3>
+                    <p><strong>Cedula/Ruc:</strong> <span th:text="${orden.cliente.ci_ruc}"></span></p>
+                    <p><strong>Nombre:</strong> <span th:text="${orden.cliente.nombre}"></span></p>
+                    <p><strong>Direccion:</strong> <span th:text="${orden.cliente.direccion}"></span></p>
+                    <p><strong>Teléfono:</strong> <span th:text="${orden.cliente.telefono}"></span></p>
+                    <p><strong>Email:</strong> <span th:text="${orden.cliente.email}"></span></p>
+                </div>
+            </section>
+
+            <section class="ticket-details">
+                <h3>Información del Vehículo</h3>
+                <p><strong>Placa:</strong> <span th:text="${orden.vehiculo.placa}"></span></p>
+                <p><strong>Marca:</strong> <span th:text="${orden.vehiculo.marca}"></span></p>
+                <p><strong>Modelo:</strong> <span th:text="${orden.vehiculo.modelo}"></span></p>
+                <p><strong>Año:</strong> <span th:text="${orden.vehiculo.anyo}"></span></p>
+                <p><strong>Kilometraje:</strong> <span th:text="${orden.vehiculo.kilometraje}"></span></p>
+            </section>
+
+
+            <section class="ticket-message">
+                <table class="details-table">
+                    <thead>
+                    <tr>
+                        <th>Descripcion</th>
+                        <th>Detalle</th>
+                        <th>Precio estimado</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="i : ${#numbers.sequence(0, orden.descripcion.size()-1)}">
+                        <td th:text="${orden.descripcion[i]}"></td>
+                        <td th:text="${orden.detallesReparacion[i]}"></td>
+                        <td th:text="${orden.costoEstimado[i]} + ' $'"></td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="2" class="text-right"><strong>Precio Total</strong></td>
+                        <td class="totalfinal" th:text="${orden.costoTotal} + ' $'"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+
+
+            <section class="ticket-coments">
+            <div class="coments">
+                <h3>Comentarios</h3>
+                <p> <span th:text="${orden.observacion}"></span></p>
+            </div>
+            </section>
+
+        </div>
+        <!-- Botón para imprimir -->
+        <div class="print-button">
+            <button onclick="window.print()">Imprimir</button>
+        </div>
+    </div>
+</section>
+</div>
+
+</body>
+<script th:src="@{/js/scripts/menu.js}"></script>
+</html>

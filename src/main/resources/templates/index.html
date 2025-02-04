@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<!--El cuerpo debe ir siempre dentro de seccion para adaptarse -->
+<section class="home-section">
+    <div class="home-content">
+        <i class='bx bx-menu'></i>
+    </div>
+
+    <div class="time" >
+    <!--Dayspedia.com widget-->
+    <iframe width='500' height='200'  style='pointer-events: none; padding:0!important; margin:0!important; border:none!important; background:none!important; background:transparent!important;'
+            marginheight='0' marginwidth='0' frameborder='0' scrolling='no'
+            comment='/*defined*/'
+            src='https://dayspedia.com/if/digit/?v=1&iframe=eyJ3LTEyIjpmYWxzZSwidy0xMSI6dHJ1ZSwidy0xMyI6dHJ1ZSwidy0xNCI6dHJ1ZSwidy0xNSI6dHJ1ZSwidy0xMTAiOnRydWUsInctd2lkdGgtMCI6ZmFsc2UsInctd2lkdGgtMSI6ZmFsc2UsInctd2lkdGgtMiI6dHJ1ZSwidy0xNiI6IjI0cHgiLCJ3LTE5IjoiNDgiLCJ3LTE3IjoiMTYiLCJ3LTIxIjp0cnVlLCJiZ2ltYWdlIjoxMywiYmdpbWFnZVNldCI6dHJ1ZSwidy0yMWMwIjoiIzExMTAxZCIsInctMCI6dHJ1ZSwidy0zIjp0cnVlLCJ3LTNjMCI6IiNmZmZmZmYiLCJ3LTNiMCI6IjEiLCJ3LTYiOiIjZmZmZmZmIiwidy0yMCI6dHJ1ZSwidy00IjoiI2ZmZmZmZiIsInctMTgiOnRydWUsInctd2lkdGgtMmMtMCI6IjUwMCIsInctMTE1Ijp0cnVlfQ==&lang=es&cityid=9306'></iframe>
+        <!--Dayspedia.com widget ENDS-->
+    </div>
+
+</section>
+
+</body>
+<script th:src="@{/js/scripts/menu.js}"></script>
+</html>

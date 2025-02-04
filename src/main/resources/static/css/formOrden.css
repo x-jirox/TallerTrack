@@ -1,0 +1,171 @@
+/* Estilo general del contenedor del formulario */
+.form-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+
+}
+
+/* Encabezado centrado */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Estructura del formulario */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Alinhación de cada fila con dos elementos */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Ancho de cada columna dentro de la fila */
+.form-row .form-col {
+    width: 48%; /* Dos campos por fila */
+}
+
+/* Estilo de las etiquetas */
+label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* Estilo para los inputs y selects */
+input.form-control, select.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Estilo del botón de verificar, centrado al lado del input */
+#verificarBtn {
+    border-radius: 10px; /* Bordes redondeados */
+    margin-left: 10px;
+    background-color: #0f0f32;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 28px;
+}
+
+/* Centrado del campo "placa" con el botón "verificar" */
+.form-row.search-row {
+    justify-content: center;
+}
+
+/* Ajuste para cuando los campos ocupan toda la fila */
+.form-row.full-width {
+    justify-content: flex-start;
+}
+
+/* Asegura que los inputs sean responsive */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Respuesta para pantallas pequeñas */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-row .form-col {
+        width: 100%;
+    }
+}
+/* Estilo para la tabla */
+#datosAdicionalesTable {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+#datosAdicionalesTable th, #datosAdicionalesTable td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+#datosAdicionalesTable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+#datosAdicionalesTable td input {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Estilo para el botón "X" de eliminar */
+.remove-row-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.remove-row-btn:hover {
+    background-color: #c82333;
+}
+
+/* Botón para agregar más filas */
+#addRowBtn {
+    border-radius: 10px; /* Bordes redondeados */
+    margin-left: 10px;
+    background-color: #0f0f32;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 28px;
+}
+
+#guardarBtn {
+    border-radius: 10px; /* Bordes redondeados */
+    margin-left: 10px;
+    background-color: #0f0f32;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 28px;
+}
+
+.form-coment {
+    width: 100%;
+}
+

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Nueva Orden</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/formOrden.css}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<section class="home-section">
+    <div class="home-content">
+        <i class='bx bx-menu'></i>
+    </div>
+
+    <div class="form-container">
+        <h2>Formulario de Nueva Orden</h2>
+
+        <form id="formOrden" method="POST" th:action="@{/orden/formOrden}">
+
+            <!-- Fila para placa y botón verificar -->
+            <div class="form-row search-row">
+                <div class="form-col">
+                    <label for="placasearch" class="form-label">Placa</label>
+                    <input type="text" id="placasearch" name="placa" class="form-control">
+                </div>
+                <button type="button" id="verificarBtn" class="btn btn-primary mt-3">Verificar</button>
+            </div>
+
+            <!-- Fila para fecha y personal encargado -->
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="fecha" name="fechaCreacion">
+                </div>
+                <div class="form-col">
+                    <label for="personal" class="form-label">Personal Encargado</label>
+                    <select id="personal" name="personal.id" class="form-control">
+                        <option value="">Seleccione un empleado</option>
+                        <th:block th:each="p : ${personalList}">
+                            <option th:value="${p.id}" th:text="${p.nombre + ' ' + p.apellido}"></option>
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="metodoPago" class="form-label">Método de Pago</label>
+                    <select id="metodoPago" name="metodoPago" class="form-control">
+                        <option value="">Seleccione un método de pago</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Tarjeta">Tarjeta</option>
+                        <option value="Cheque">Cheque</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <h2>Datos del Vehículo</h2>
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="placa" class="form-label">Placa</label>
+                    <input type="text" id="placa" name="placa" class="form-control" readonly>
+                </div>
+                <div class="form-col">
+                    <label for="marca" class="form-label">Marca</label>
+                    <input type="text" id="marca" name="marca" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="kilometraje" class="form-label">Kilometraje</label>
+                    <input type="number" id="kilometraje" name="kilometraje" class="form-control" readonly>
+                </div>
+            </div>
+
+            <h2>Datos del Cliente</h2>
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="clienteCiRuc" class="form-label">RUC/CI</label>
+                    <input type="text" id="clienteCiRuc" name="cliente.ci_ruc" class="form-control" readonly>
+                </div>
+                <div class="form-col">
+                    <label for="clienteNombre" class="form-label">Nombre</label>
+                    <input type="text" id="clienteNombre" name="cliente.nombre" class="form-control" readonly>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="clienteTelefono" class="form-label">Teléfono</label>
+                    <input type="text" id="clienteTelefono" name="cliente.telefono" class="form-control" readonly>
+                </div>
+                <div class="form-col">
+                    <label for="clienteDireccion" class="form-label">Dirección</label>
+                    <input type="text" id="clienteDireccion" name="cliente.direccion" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="form-row">
+
+                <div class="form-col">
+                    <label for="clienteEmail" class="form-label">Email</label>
+                    <input type="email" id="clienteEmail" name="cliente.email" class="form-control" readonly>
+                </div>
+            </div>
+
+            <h2>Datos Adicionales</h2>
+            <button type="button" id="addRowBtn" class="btn btn-secondary mt-3">Agregar mas</button>
+
+            <table id="datosAdicionalesTable">
+                <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Detalle</th>
+                    <th>Precio</th>
+                    <th>Acción</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="text" name="descripcion[]" class="form-control" placeholder="Descripción"></td>
+                    <td><input type="text" name="detallesReparacion[]" class="form-control" placeholder="Detalle"></td>
+                    <td>
+                        <input type="number" name="costoEstimado[]" class="form-control precio-input"
+                               placeholder="Precio" step="0.01" min="0" required>
+                    </td>
+
+                    <button type="button" class="btn btn-danger remove-row-btn" style="display: none;">X</button>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="2" style="text-align: right; font-weight: bold;">Total:</td>
+                    <td><input type="text" name="costoTotal" id="totalPrecio" class="form-control" readonly value="0">
+                    </td>
+                    <td></td>
+                </tr>
+                </tfoot>
+            </table>
+
+<!--            agregar cuadro comentario-->
+            <div class="form-row">
+                <div class="form-coment">
+                    <label for="observacion" class="form-label">Comentarios</label>
+                    <textarea id="observacion" name="observacion" class="form-control" rows="4" placeholder="Ingrese sus comentarios aquí..."></textarea>
+                </div>
+            </div>
+
+            <input type="hidden" id="idCliente" name="cliente.id">
+            <input type="hidden" id="idVehiculo" name="vehiculo.id">
+
+
+            <button type="submit" id="guardarBtn" class="btn btn-success mt-3">Guardar</button>
+        </form>
+
+
+    </div>
+</section>
+
+</body>
+<!--arreglar bug tabla-->
+<script th:src="@{/js/scripts/menu.js}"></script>
+<script th:src="@{/js/scripts/Orden/newdescripcion.js}"></script>
+<script th:src="@{/js/scripts/Orden/completedates.js}"></script>
+</html>

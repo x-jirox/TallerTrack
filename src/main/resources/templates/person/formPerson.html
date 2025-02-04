@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuevo Personal</title>
+  <link rel="stylesheet" th:href="@{/css/newclient.css}">
+  <link rel="stylesheet" th:href="@{/css/header.css}">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<section class="home-section">
+  <div class="home-content">
+    <i class='bx bx-menu'></i>
+  </div>
+
+  <div class="form-container">
+    <h2>Formulario de Personal</h2>
+    <form th:action="@{/person/formPerson}" th:object="${personal}" method="post">
+      <input type="hidden" th:field="*{id}" />
+
+      <label for="ciRuc">Cedula:</label>
+      <input type="text" id="ciRuc" th:field="*{cedula}" placeholder="Ingrese la cedula" required />
+
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" th:field="*{nombre}" placeholder="Ingrese nombre" required />
+
+      <label for="telefono">Apellido:</label>
+      <input type="text" id="telefono" th:field="*{apellido}" placeholder="Ingrese teléfono" required />
+
+
+
+      <button type="submit" class="submit-btn">Guardar</button>
+    </form>
+  </div>
+</section>
+
+
+</body>
+<script th:src="@{/js/scripts/menu.js}"></script>
+</html>

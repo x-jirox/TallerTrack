@@ -1,0 +1,126 @@
+<div class="sidebar close" th:fragment="header">
+
+    <div class="logo-details">
+        <i class='bx bxs-car-mechanic'></i>
+        <span class="logo_name">TallerTrack</span>
+    </div>
+
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="/user/index">
+                <i class='bx bx-home'></i>
+                <span class="link_name">Inicio</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="/user/index">Inicio</a></li>
+            </ul>
+        </li>
+
+
+        <li>
+            <div class="iocn-link">
+                <a href="/person/listPerson">
+                    <i class='bx bx-group'></i>
+                    <span class="link_name">Personal</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="/person/listPerson">Personal</a></li>
+                <li><a href="/person/listPerson">Lista de Empleados</a></li>
+                <li><a href="/person/formPerson">Nuevo Empleado</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <div class="iocn-link">
+                <a href="/client/listClient">
+                    <i class='bx bx-user'></i>
+                    <span class="link_name">Clientes</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="/client/listClient">Clientes</a></li>
+                <li><a href="/client/listClient">Lista de Clientes</a></li>
+                <li><a href="/client/formClient">Nuevo Cliente</a></li>
+
+            </ul>
+        </li>
+
+        <li>
+            <div class="iocn-link">
+                <a href="/vehiculo/listVehiculo">
+                    <i class='bx bx-car'></i>
+                    <span class="link_name">Vehiculos</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="/vehiculo/listVehiculo">Vehiculos</a></li>
+                <li><a href="/vehiculo/listVehiculo">Lista de Vehiculos</a></li>
+                <li><a href="/vehiculo/formVehiculo">Nuevo Vehiculo</a></li>
+
+            </ul>
+        </li>
+
+        <li>
+            <div class="iocn-link">
+                <a href="/orden/listOrden">
+                    <i class='bx bx-notepad'></i>
+                    <span class="link_name">Ordenes</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="/orden/listOrden">Ordenes</a></li>
+                <li><a href="/orden/listOrden">Lista de Ordenes</a></li>
+                <li><a href="/orden/formOrden">Nueva Orden</a></li>
+
+            </ul>
+        </li>
+
+        <li>
+            <a href="/historial/listHistorial">
+                <i class='bx bx-file'></i>
+                <span class="link_name">Historial</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="/historial/listHistorial">Historial</a></li>
+            </ul>
+        </li>
+
+
+        <!--        Cerrar sesion-->
+        <li>
+            <div class="profile-details">
+                <div class="profile-content">
+                    <img src="/image/leones.jpg" alt="profileImg">
+                </div>
+
+                <div class="name-job">
+                    <div class="profile_name"><span th:text="${userPrincipal.username}">User</span></div>
+                    <div class="job">Bienvenido!</div>
+                </div>
+                <a href="#" class="nav-link btn-neutral"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class='bx bx-log-out'></i>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="developer-details">
+                <span class="developed_by">Developed by DevSoftTech</span>
+            </div>
+        </li>
+    </ul>
+
+
+    <!-- Formulario oculto para cerrar sesión -->
+    <form id="logout-form" th:action="@{/user/logout}" method="post" style="display: none;">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+
+</div>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Órdenes</title>
+    <link rel="stylesheet" th:href="@{/css/listas.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<section class="home-section">
+    <div class="home-content">
+        <i class='bx bx-menu'></i>
+    </div>
+
+    <div class="container">
+        <div class="content-inline">
+            <div class="search-inline">
+                <form action="/orden/buscar" method="get" id="searchForm">
+                    <input name="term" class="search-inline--input" placeholder="Buscar por cliente o placa"
+                           id="searchInput">
+                </form>
+            </div>
+
+
+            <a href="/orden/listOrden" class="nuevoclient">Todas las Órdenes</a>
+            <a href="/orden/formOrden" class="nuevoclient">Nueva Orden</a>
+
+            <!-- Filtro por estado -->
+            <div class="filter-inline">
+                <form action="/orden/filtrarPorEstado" method="get">
+                    <select name="estado" class="filter-inline--select">
+                        <option value="">Todos los estados</option>
+                        <option value="ACTIVO">ACTIVO</option>
+                        <option value="FINALIZADO">FINALIZADO</option>
+                    </select>
+                    <button type="submit" class="filter-inline--button">Filtrar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tabla de órdenes -->
+        <table class="elegant-table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>FECHA</th>
+                <th>PLACA</th>
+                <th>CLIENTE</th>
+                <th>ESTADO</th>
+                <th>PAGO</th>
+                <th>ACCIONES</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="orden : ${orden}">
+                <td th:text="${orden.codigo}"></td>
+                <td th:text="${orden.fechaCreacion}"></td>
+                <td th:text="${orden.vehiculo.placa}"></td>
+                <td th:text="${orden.cliente.ci_ruc}"></td>
+                <td th:text="${orden.estado}"
+                    th:style="'color:' + (${orden.estado == 'ACTIVO'} ? 'green' : 'red')"></td>
+                <!-- Cambiar color según el estado -->
+              <td th:class="${orden.estado == 'FINALIZADO' ? 'pago-finalizado' : (orden.estado == 'ACTIVO' ? 'pago-activo' : '')}">
+                <span th:if="${orden.metodoPago == 'Efectivo'}"><i class='bx bx-money'></i> Efectivo</span>
+                <span th:if="${orden.metodoPago == 'Cheque'}"><i class='bx bx-wallet'></i> Cheque</span>
+                <span th:if="${orden.metodoPago == 'Tarjeta'}"><i class='bx bx-credit-card'></i> Tarjeta</span>
+              </td>
+                <td>
+                    <div class="action-buttons">
+                        <a th:href="@{/orden/verOrden/{id}(id=${orden.id})}" class="btn btn-primary btn-sm update-btn">Ver</a>
+                        <a th:if="${orden.estado == 'ACTIVO'}"
+                           th:href="@{/orden/finalizarOrden/{id}(id=${orden.id})}"
+                           class="btn btn-primary btn-sm delete-btn">Finalizar Orden</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+</body>
+<script th:src="@{/js/scripts/menu.js}"></script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio Sesion</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div class="login-container">
+
+    <h2>Login</h2>
+    <form th:action="@{/user/login}" method="post">
+
+        <div class="form-group">
+            <i class='bx bxs-user-circle'></i>
+            <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required>
+        </div>
+        <div class="form-group">
+            <i class='bx bxs-lock'></i>
+            <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Login</button>
+        </div>
+        <div th:if="${param.error}" class="error">
+            Usuario o Contraseña incorrectas.
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
